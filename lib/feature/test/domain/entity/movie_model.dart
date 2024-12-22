@@ -1,4 +1,4 @@
-import '../../constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 
 class MovieModel {
   String? name;
