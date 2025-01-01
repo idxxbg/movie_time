@@ -1,9 +1,10 @@
-import 'package:film_time/core/data/models/movie_model.dart';
+// import 'package:film_time/feature/home/data/models/list_movie_model.dart';
+import 'package:film_time/feature/home/domain/entity/movie_entity.dart';
 import 'package:flutter/material.dart';
 
 class LayOutCardWidget extends StatelessWidget {
   const LayOutCardWidget({super.key, required this.movie});
-  final MovieModel movie;
+  final MovieEntity movie;
 
   @override
   Widget build(BuildContext context) {

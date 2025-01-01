@@ -1,5 +1,6 @@
-import 'package:film_time/feature/home/presentation/bloc/home_bloc.dart';
 import 'package:film_time/feature/home/presentation/bloc/home_state.dart';
+import 'package:film_time/feature/home/presentation/bloc/new_movie_cubit/new_movie_cubit.dart';
+import 'package:film_time/feature/home/presentation/bloc/new_movie_cubit/new_movie_state.dart';
 import 'package:film_time/feature/home/presentation/widget/lay_out_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,24 +15,25 @@ class SlideView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+    context.read<NewMovieCubit>().getNewMovie(1);
+    return BlocBuilder<NewMovieCubit, HomeState>(builder: (context, state) {
       if (state is HomeLoading) {
-        const Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       }
       if (state is HomeError) {
-        const Center(
+        return const Center(
           child: Text('data failed'),
         );
       }
       if (state is HomeLoaded) {
-        final listMovies = state.list.listMovie!;
+        final listMovies = state.listMovie.items;
         return ConstrainedBox(
           constraints: BoxConstraints(maxHeight: height / 4),
           child: CarouselView.weighted(
             controller: CarouselController(initialItem: 1),
-            itemSnapping: true,
+            itemSnapping: false,
             flexWeights: const [1, 7, 1],
             children: listMovies
                 .map((movie) => LayOutCardWidget(movie: movie))
