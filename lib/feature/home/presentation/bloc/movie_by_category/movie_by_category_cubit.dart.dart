@@ -1,4 +1,3 @@
-import 'package:film_time/feature/home/presentation/bloc/new_movie_cubit/new_movie_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/domain.dart';
@@ -9,7 +8,6 @@ class MovieByCategoryBloc extends Cubit<HomeState> {
 
   MovieByCategoryBloc({required this.getListMovieByCategoryUseCase})
       : super(HomeInitial());
-
   Future<void> fetchMoviesByCategory(String slug, int page) async {
     emit(HomeLoading());
     try {

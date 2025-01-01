@@ -1,6 +1,5 @@
 import 'package:film_time/feature/home/presentation/bloc/home_state.dart';
 import 'package:film_time/feature/home/presentation/bloc/new_movie_cubit/new_movie_cubit.dart';
-import 'package:film_time/feature/home/presentation/bloc/new_movie_cubit/new_movie_state.dart';
 import 'package:film_time/feature/home/presentation/widget/lay_out_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
