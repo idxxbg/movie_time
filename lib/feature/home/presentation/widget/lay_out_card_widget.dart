@@ -32,8 +32,7 @@ class LayOutCardWidget extends StatelessWidget {
               softWrap: false,
               overflow: TextOverflow.fade,
               movie.name.toString(),
-              style:
-                  textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary),
+              style: textTheme.titleMedium,
             ),
             subtitle: Text(
               selectionColor: colorScheme.secondary,
@@ -41,8 +40,7 @@ class LayOutCardWidget extends StatelessWidget {
               overflow: TextOverflow.fade,
               '${movie.time} - ${movie.currentEpisode} \n ${movie.language} '
                   .toString(),
-              style:
-                  textTheme.bodySmall?.copyWith(color: colorScheme.onPrimary),
+              style: textTheme.bodySmall,
             ),
           ),
         )

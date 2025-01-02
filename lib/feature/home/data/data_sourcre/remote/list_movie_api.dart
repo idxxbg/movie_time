@@ -32,13 +32,6 @@ class ListMovieApi {
     );
   }
 
-  // Fetch detail movie
-  Future<Response> fetchDetail(String slug) async {
-    return await _apiClient.get(
-      '${ApiConstants.detailMovie}$slug',
-    );
-  }
-
   // Fetch movie by nation
   Future<Response> fetchNationMovie(String slug, int page) async {
     return await _apiClient.get(
