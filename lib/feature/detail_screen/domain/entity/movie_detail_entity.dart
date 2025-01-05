@@ -1,53 +1,65 @@
+import 'package:film_time/feature/detail_screen/domain/domain.dart';
+
 class MovieDetailEntity {
-  final Map<String, CategoryEntity>? category;
-  final List<EpisodeEntity>? episodes;
+  final MovieEntity? movie;
+  final List<EpisodesEntity>? episodes;
 
   MovieDetailEntity({
-    this.category,
+    this.movie,
     this.episodes,
   });
 }
 
-class CategoryEntity {
-  final GroupEntity? group;
-  final List<GroupEntity>? list;
+// class MovieDetailEntity {
+//   final Map<String, CategoryEntity>? category;
+//   final List<EpisodeEntity>? episodes;
 
-  CategoryEntity({
-    this.group,
-    this.list,
-  });
-}
+//   MovieDetailEntity({
+//     this.category,
+//     this.episodes,
+//   });
+// }
 
-class GroupEntity {
-  final String? id;
-  final String? name;
+// class CategoryEntity {
+//   final GroupEntity? group;
+//   final List<GroupEntity>? list;
 
-  GroupEntity({
-    this.id,
-    this.name,
-  });
-}
+//   CategoryEntity({
+//     this.group,
+//     this.list,
+//   });
+// }
 
-class EpisodeEntity {
-  final String? serverName;
-  final List<ItemsEntity>? items;
+// class GroupEntity {
+//   final String? id;
+//   final String? name;
 
-  EpisodeEntity({
-    this.serverName,
-    this.items,
-  });
-}
+//   GroupEntity({
+//     this.id,
+//     this.name,
+//   });
+// }
 
-class ItemsEntity {
-  final String? name;
-  final String? slug;
-  final String? embed;
-  final String? m3U8;
+// class EpisodeEntity {
+//   final String? serverName;
+//   final List<ItemsEntity>? items;
 
-  ItemsEntity({
-    this.name,
-    this.slug,
-    this.embed,
-    this.m3U8,
-  });
-}
+//   EpisodeEntity({
+//     this.serverName,
+//     this.items,
+//   });
+// }
+
+// class ItemsEntity {
+//   final String? name;
+//   final String? slug;
+//   final String? embed;
+//   final String? m3U8;
+
+//   ItemsEntity({
+//     this.name,
+//     this.slug,
+//     this.embed,
+//     this.m3U8,
+//   });
+// }

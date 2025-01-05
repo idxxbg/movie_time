@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:film_time/feature/home/domain/entity/movie_entity.dart';
+import 'package:film_time/core/constants/constants.dart';
+import 'package:film_time/feature/home/domain/entity/movie_info_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:soft_edge_blur/soft_edge_blur.dart';
@@ -7,7 +8,7 @@ import 'package:soft_edge_blur/soft_edge_blur.dart';
 class ExampleAppBar extends SliverPersistentHeaderDelegate {
   final bottomHeight = 60;
   final extraRadius = 5;
-  final MovieEntity movie;
+  final MovieInfoEntity movie;
   ExampleAppBar(this.movie);
   @override
   Widget build(context, shrinkOffset, overlapsContent) {
@@ -34,7 +35,7 @@ class ExampleAppBar extends SliverPersistentHeaderDelegate {
               Transform.scale(
                 scale: 1.9 - clowsingRate,
                 alignment: Alignment.bottomCenter,
-                child: _Avatar(image: movie.thumbUrl.toString()),
+                child: _Avatar(image: kimageUrl + movie.posterUrl.toString()),
               ),
               const Spacer(),
               const LikeButton(),
@@ -58,12 +59,12 @@ class ExampleAppBar extends SliverPersistentHeaderDelegate {
             child: SoftEdgeBlur(
               edges: [
                 EdgeBlur(
-                  type: EdgeType.bottomEdge,
-                  size: 100,
+                  type: EdgeType.topEdge,
+                  size: 50,
                   sigma: 50,
                   controlPoints: [
                     ControlPoint(
-                      position: 0.2,
+                      position: 0.3,
                       type: ControlPointType.visible,
                     ),
                     ControlPoint(
@@ -80,7 +81,7 @@ class ExampleAppBar extends SliverPersistentHeaderDelegate {
                   child: Opacity(
                     opacity: opacity,
                     child: CachedNetworkImage(
-                      imageUrl: movie.posterUrl.toString(),
+                      imageUrl: kimageUrl + movie.thumbUrl.toString(),
                       fit: BoxFit.cover,
                     ),
                   ),

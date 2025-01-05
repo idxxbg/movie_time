@@ -1,20 +1,34 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entity/list_movie_entity.dart';
-import 'movie_model.dart';
+import '../../domain/domain.dart';
+import 'movie_info_model.dart';
 
 part 'list_movie_model.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable()
 class ListMovieModel {
-  final List<MovieModel> items;
+  final List<MovieInfoModel> items;
 
-  ListMovieModel({required this.items});
+  ListMovieModel(this.items);
 
-  factory ListMovieModel.fromJson(Map<String, dynamic> json) =>
-      _$ListMovieModelFromJson(json);
-  ListMovieEntity toEntity(ListMovieModel movie) {
-    return ListMovieEntity(
-      items: movie.items.map((movie) => movie.toEntity()).toList(),
-    );
+  factory ListMovieModel.fromJson(Map<String, dynamic> json) {
+    return _$ListMovieModelFromJson(json);
+  }
+
+  ListMovieEntity toEnity(ListMovieModel listMovie) {
+    return ListMovieEntity(listMovie.items.map((e) => e.toEntity()).toList());
   }
 }
+
+// class ListMovieModel {
+//   final List<MovieModel> items;
+
+//   ListMovieModel({required this.items});
+
+//   factory ListMovieModel.fromJson(Map<String, dynamic> json) =>
+//       _$ListMovieModelFromJson(json);
+//   ListMovieEntity toEntity(ListMovieModel listMovie) {
+//     return ListMovieEntity(
+//       items: listMovie.items.map((movie) => movie.toEntity()).toList(),
+//     );
+//   }
+// }

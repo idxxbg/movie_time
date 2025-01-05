@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:film_time/core/constants/constants.dart';
 import 'package:film_time/feature/detail_screen/presentation/screens/movie_detail_screen.dart';
 import 'package:film_time/feature/home/presentation/bloc/home_state.dart';
 import 'package:film_time/feature/home/presentation/widget/featured_movie_shimmer.dart';
@@ -68,6 +69,7 @@ class FeaturedMovie extends StatelessWidget {
                               openShape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
                               openBuilder: (context, closedContainer) {
+                                // return Scaffold(appBar: AppBar());
                                 return MovieDetailScreen(movie: movie);
                               },
                               closedBuilder: (context, openContainer) {
@@ -78,7 +80,8 @@ class FeaturedMovie extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20),
                                     child: CachedNetworkImage(
                                       fit: BoxFit.cover,
-                                      imageUrl: movie.thumbUrl.toString(),
+                                      imageUrl:
+                                          '$kimageUrl${movie.posterUrl.toString()}',
                                     ),
                                   ),
                                 );

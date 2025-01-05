@@ -12,8 +12,9 @@ class SlideViewShimmerWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
+        // baseColor: Colors.grey[300]!,
+        baseColor: Theme.of(context).colorScheme.primaryFixedDim,
+        highlightColor: Theme.of(context).colorScheme.secondary,
         child: Row(
           children: [
             Expanded(

@@ -35,8 +35,8 @@ class ShimmerWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
+        baseColor: Theme.of(context).colorScheme.primaryFixedDim,
+        highlightColor: Theme.of(context).colorScheme.secondary,
         child: Column(
           children: [
             Container(

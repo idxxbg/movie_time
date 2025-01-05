@@ -6,11 +6,9 @@ import '../../domain/domain.dart';
 class HomeBloc extends Cubit<HomeState> {
   final GetListNewMovieUseCase getListNewMovieUseCase;
   final GetListMovieByCategoryUseCase getListMovieByCategoryUseCase;
-  final GetListMovieByTypeUseCase getListMovieByTypeUseCase;
   HomeBloc({
     required this.getListNewMovieUseCase,
     required this.getListMovieByCategoryUseCase,
-    required this.getListMovieByTypeUseCase,
   }) : super(HomeInitial());
 
   // Future<void> getNewMovie({

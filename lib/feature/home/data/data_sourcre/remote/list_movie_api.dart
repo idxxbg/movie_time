@@ -23,28 +23,4 @@ class ListMovieApi {
       queryParameters: {'page': page},
     );
   }
-
-  // Fetch movie by type
-  Future<Response> fetchTypeMovie(String slug, int page) async {
-    return await _apiClient.get(
-      '${ApiConstants.movieByType}$slug',
-      queryParameters: {'page': page},
-    );
-  }
-
-  // Fetch movie by nation
-  Future<Response> fetchNationMovie(String slug, int page) async {
-    return await _apiClient.get(
-      '${ApiConstants.movieByNation}$slug',
-      queryParameters: {'page': page},
-    );
-  }
-
-  // Fetch movie by time
-  Future<Response> fetchMovieByTime(String slug, int page) async {
-    return await _apiClient.get(
-      '${ApiConstants.movieByTime}$slug',
-      queryParameters: {'page': page},
-    );
-  }
 }

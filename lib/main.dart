@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
+  // runApp(const HomePage2());
   runApp(const MyApp());
   getItsetup();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);

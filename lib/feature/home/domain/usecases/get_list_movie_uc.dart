@@ -19,12 +19,3 @@ class GetListMovieByCategoryUseCase extends GetListMovieUsecase {
     return await movieRepo.getMovieByCategory(slug, page);
   }
 }
-
-class GetListMovieByTypeUseCase extends GetListMovieUsecase {
-  final ListMovieRepository movieRepo;
-  GetListMovieByTypeUseCase(this.movieRepo);
-
-  Future<ListMovieEntity?> call(String slug, int page) async {
-    return await movieRepo.getMovieByType(slug, page);
-  }
-}

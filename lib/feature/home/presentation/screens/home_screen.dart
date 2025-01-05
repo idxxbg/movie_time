@@ -29,9 +29,10 @@ class HomeScreen extends StatelessWidget {
 
           const FeaturedMovie(
             type: 'by_category',
-            categoryType: 'Phim Hành Động',
-            endPoints: EndPoints.action,
+            categoryType: 'Phim bộ',
+            endPoints: EndPoints.drama,
           ),
+
           const FeaturedMovie(
             type: 'by_category',
             categoryType: 'Phim Hoạt Hình',
@@ -40,14 +41,14 @@ class HomeScreen extends StatelessWidget {
 
           const FeaturedMovie(
             type: 'by_category',
-            categoryType: 'Phim Khoa học viễn tưởng',
-            endPoints: EndPoints.science,
+            categoryType: 'Phim lẻ',
+            endPoints: EndPoints.movie,
           ),
 
           const FeaturedMovie(
             type: 'by_category',
-            categoryType: 'Phim phiêu lưu',
-            endPoints: EndPoints.drama,
+            categoryType: 'Phim tvShows',
+            endPoints: EndPoints.tvShows,
           ),
           const Gap(20),
         ],
