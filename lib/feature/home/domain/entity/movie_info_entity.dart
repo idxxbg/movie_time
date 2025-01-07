@@ -1,7 +1,6 @@
 class MovieInfoEntity {
   final String? name;
   final String? slug;
-
   final String? originName;
   final String? posterUrl;
   final String? thumbUrl;

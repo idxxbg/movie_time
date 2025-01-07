@@ -37,11 +37,11 @@ class SlideView extends StatelessWidget {
           return ConstrainedBox(
             constraints: BoxConstraints(maxHeight: height / 4),
             child: CarouselView.weighted(
-              // onTap: (value) => Navigator.push(
-              //     context,
-              //     CupertinoPageRoute(
-              //         builder: (_) =>
-              //             MovieDetailScreen(movie: listMovies[value]))),
+              onTap: (value) => Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                      builder: (_) =>
+                          MovieDetailScreen(movie: listMovies[value]))),
               controller: CarouselController(initialItem: 3),
               itemSnapping: false,
               flexWeights: const [1, 7, 1],

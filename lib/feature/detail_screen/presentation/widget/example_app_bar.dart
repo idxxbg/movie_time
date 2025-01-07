@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:film_time/core/constants/constants.dart';
+import 'package:film_time/core/common/style/style.dart';
 import 'package:film_time/feature/home/domain/entity/movie_info_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
@@ -35,7 +35,7 @@ class ExampleAppBar extends SliverPersistentHeaderDelegate {
               Transform.scale(
                 scale: 1.9 - clowsingRate,
                 alignment: Alignment.bottomCenter,
-                child: _Avatar(image: kimageUrl + movie.posterUrl.toString()),
+                child: _Avatar(image: movie.posterUrl.toString()),
               ),
               const Spacer(),
               const LikeButton(),
@@ -81,7 +81,11 @@ class ExampleAppBar extends SliverPersistentHeaderDelegate {
                   child: Opacity(
                     opacity: opacity,
                     child: CachedNetworkImage(
-                      imageUrl: kimageUrl + movie.thumbUrl.toString(),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.image_not_supported_sharp,
+                        size: 50,
+                      ),
+                      imageUrl: completeImageUrl(movie.thumbUrl.toString()),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -195,7 +199,11 @@ class _Avatar extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: CachedNetworkImage(
-          imageUrl: image,
+          errorWidget: (context, url, error) => const Icon(
+            Icons.image_not_supported_sharp,
+            size: 50,
+          ),
+          imageUrl: completeImageUrl(image.toString()),
           fit: BoxFit.cover,
         ),
       ),

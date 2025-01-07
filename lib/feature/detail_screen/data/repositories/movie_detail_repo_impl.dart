@@ -10,7 +10,6 @@ class MovieDetailRepoImpl implements MovieDetailRepo {
 
     final movie = MovieDetailModel.fromJson(response.data);
     final result = movie.toEntity();
-    print(result.movie!.content.toString());
     return result;
   }
 }

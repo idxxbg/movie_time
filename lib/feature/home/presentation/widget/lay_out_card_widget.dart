@@ -41,7 +41,6 @@ class LayOutCardWidget extends StatelessWidget {
               child: Image(
                 fit: BoxFit.fitWidth,
                 image: NetworkImage(
-                  // 'https://phim.nguonc.com/public/images/Post/8/lac-loi-o-phan-lan-1.jpg'
                   movie.thumbUrl.toString(),
                 ),
               ),

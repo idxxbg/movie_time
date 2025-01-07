@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:film_time/core/constants/constants.dart';
+import 'package:film_time/core/common/style/style.dart';
 import 'package:film_time/feature/detail_screen/presentation/screens/movie_detail_screen.dart';
 import 'package:film_time/feature/home/presentation/bloc/home_state.dart';
 import 'package:film_time/feature/home/presentation/widget/featured_movie_shimmer.dart';
@@ -57,6 +57,8 @@ class FeaturedMovie extends StatelessWidget {
                     itemBuilder: (context, int i) {
                       final movie = state.listMovie.items[i];
                       return SingleChildScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        reverse: false,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -80,14 +82,14 @@ class FeaturedMovie extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20),
                                     child: CachedNetworkImage(
                                       fit: BoxFit.cover,
-                                      imageUrl:
-                                          '$kimageUrl${movie.posterUrl.toString()}',
+                                      imageUrl: completeImageUrl(
+                                          movie.posterUrl.toString()),
                                     ),
                                   ),
                                 );
                               },
                             ),
-                            const Gap(16),
+                            const Gap(8),
                             SizedBox(
                               width: size.width * 1 / 3,
                               child: Text(

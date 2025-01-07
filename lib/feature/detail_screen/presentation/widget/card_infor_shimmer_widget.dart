@@ -42,7 +42,7 @@ class CardInforShimmerWidget extends StatelessWidget {
               ),
               trailing: const CircleAvatar(),
             ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             Container(
               height: 10,
               width: size.width * 0.3,

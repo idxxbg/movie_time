@@ -1,9 +1,10 @@
+import 'package:film_time/feature/detail_screen/detail_screen.dart';
 import 'package:film_time/feature/detail_screen/presentation/bloc/detail_bloc/detail_bloc.dart';
 import 'package:film_time/feature/detail_screen/presentation/bloc/detail_bloc/detail_state.dart';
 import 'package:film_time/feature/detail_screen/presentation/widget/episode_shimmer_widget.dart';
+import 'package:film_time/feature/detail_screen/presentation/widget/video_player_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:glass/glass.dart';
 import 'package:gap/gap.dart';
 
 class EpisodeView extends StatelessWidget {
@@ -12,11 +13,13 @@ class EpisodeView extends StatelessWidget {
     required this.size,
     required this.theme,
     required this.slug,
+    required this.onEpisodeSelected,
   });
 
   final Size size;
   final ThemeData theme;
   final String slug;
+  final Function(ServerDataEntity) onEpisodeSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -58,28 +61,37 @@ class EpisodeView extends StatelessWidget {
                       Visibility(
                         visible: _showMore,
                         child: SizedBox(
-                          height: size.height * 0.3,
-                          child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 5,
-                              crossAxisSpacing: 5.0,
-                              mainAxisSpacing: 5.0,
-                              childAspectRatio: 1, // Aspect ratio of each item
-                            ),
-                            itemCount: ep.serverData!.length,
-                            itemBuilder: (context, index) {
-                              final name = ep.serverData![index].name;
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.primaryContainer,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Center(
-                                  child: Text(name.toString()),
-                                ),
-                              ).asGlass();
-                            },
+                          child: Wrap(
+                            spacing: 5.0, // Khoảng cách ngang giữa các ô
+                            runSpacing: 5.0, // Khoảng cách dọc giữa các ô
+                            children: ep.serverData!
+                                .map(
+                                  (data) => InkWell(
+                                    borderRadius: BorderRadius.circular(8),
+                                    onTap: () {
+                                      onEpisodeSelected(data);
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (_) =>
+                                      //         VideoPlayerWidget(data: data),
+                                      //   ),
+                                      // );
+                                    },
+                                    child: Card(
+                                      child: SizedBox(
+                                        width: (size.width - 40) /
+                                            5, // Chia đều cho 5 cột
+                                        height: (size.width - 40) /
+                                            10, // Aspect ratio là 1:1
+                                        child: Center(
+                                          child: Text(data.name.toString()),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ),
                       ),
