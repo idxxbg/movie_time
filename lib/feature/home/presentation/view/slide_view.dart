@@ -19,7 +19,6 @@ class SlideView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<NewMovieCubit>().getNewMovie(1);
     return BlocProvider(
       create: (context) =>
           NewMovieCubit(getListNewMovieUseCase: sl())..getNewMovie(1),

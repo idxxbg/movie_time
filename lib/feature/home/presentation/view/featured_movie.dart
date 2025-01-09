@@ -81,6 +81,11 @@ class FeaturedMovie extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
                                     child: CachedNetworkImage(
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(
+                                        Icons.image_not_supported_outlined,
+                                        size: 50,
+                                      ),
                                       fit: BoxFit.cover,
                                       imageUrl: completeImageUrl(
                                           movie.posterUrl.toString()),
@@ -95,7 +100,7 @@ class FeaturedMovie extends StatelessWidget {
                               child: Text(
                                 movie.name.toString(),
                                 textAlign: TextAlign.center,
-                                // maxLines: 2,
+                                maxLines: 2,
                                 overflow: TextOverflow.fade,
                                 style: theme.textTheme.titleSmall
                                     ?.copyWith(fontWeight: FontWeight.w400),

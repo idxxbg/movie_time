@@ -14,8 +14,8 @@ class ListMovieModel {
     return _$ListMovieModelFromJson(json);
   }
 
-  ListMovieEntity toEnity(ListMovieModel listMovie) {
-    return ListMovieEntity(listMovie.items.map((e) => e.toEntity()).toList());
+  ListMovieEntity toEnity() {
+    return ListMovieEntity(items.map((e) => e.toEntity()).toList());
   }
 }
 

@@ -47,8 +47,9 @@ class CardInforShimmerWidget extends StatelessWidget {
               height: 10,
               width: size.width * 0.3,
               decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.grey),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: Colors.grey,
+              ),
             ),
           ],
         ),

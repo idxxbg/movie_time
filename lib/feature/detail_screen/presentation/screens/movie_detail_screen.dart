@@ -8,76 +8,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-import '../../domain/domain.dart';
-import '../widget/video_player_widget.dart';
-
-class MovieDetailScreen extends StatefulWidget {
+class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({super.key, required this.movie});
   final MovieInfoEntity movie;
 
   @override
-  State<MovieDetailScreen> createState() => _MovieDetailScreenState();
-}
-
-class _MovieDetailScreenState extends State<MovieDetailScreen> {
-  @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     Size size = MediaQuery.sizeOf(context);
-    late ServerDataEntity? _selectedEpisode;
-
     return BlocProvider(
       create: (context) => DetailBloc(getMovieDetailUc: sl())
-        ..getDetailMovie(slug: widget.movie.slug.toString()),
+        ..getDetailMovie(slug: movie.slug.toString()),
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
               pinned: true,
-              delegate: ExampleAppBar(widget.movie),
+              delegate: ExampleAppBar(movie),
             ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Gap(20),
-                      Text(
-                        widget.movie.name.toString(),
-                        style: theme.textTheme.titleLarge?.copyWith(
-                          color: theme.colorScheme.primary,
-                          fontWeight: FontWeight.w800,
+                  child: StatefulBuilder(
+                      builder: (BuildContext context, StateSetter setState) {
+                    // ServerDataEntity? _selectedEpisode;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(20),
+                        Text(
+                          movie.name.toString(),
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            color: theme.colorScheme.primary,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
-                      const Gap(20),
-                      if (_selectedEpisode != null)
-                        VideoPlayerWidget(data: _selectedEpisode),
-                      const Gap(20),
+                        // const Gap(20),
+                        // if (_selectedEpisode != null)
+                        //   VideoPlayerWidget(data: _selectedEpisode),
+                        const Gap(16),
 
-                      // episode choice
-                      EpisodeView(
-                        size: size,
-                        theme: theme,
-                        slug: widget.movie.slug.toString(),
-                        onEpisodeSelected: (ServerDataEntity ep) {
-                          setState(() {
-                            _selectedEpisode = ep;
-                            print(_selectedEpisode!.name.toString());
-                          });
-                        },
-                      ),
-                      const Gap(20),
+                        // episode choice
+                        EpisodeView(
+                          size: size,
+                          theme: theme,
+                          slug: movie.slug.toString(),
+                        ),
+                        const Gap(16),
 
-                      // Detail movie
-                      CardMovieInfoView(size: size, theme: theme),
-                      // _BuildInforMovie(size, theme),
-                      const Gap(20),
-
-                      const Gap(20),
-                    ],
-                  ),
+                        // Detail movie
+                        CardMovieInfoView(size: size, theme: theme),
+                      ],
+                    );
+                  }),
                 ),
               ),
             ),

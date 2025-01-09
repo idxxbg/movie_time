@@ -14,6 +14,9 @@ MovieInfoModel _$MovieInfoModelFromJson(Map<String, dynamic> json) =>
       posterUrl: json['poster_url'] as String?,
       thumbUrl: json['thumb_url'] as String?,
       year: (json['year'] as num?)?.toInt(),
+      time: json['time'] as String?,
+      quality: json['quality'] as String?,
+      lang: json['lang'] as String?,
     );
 
 Map<String, dynamic> _$MovieInfoModelToJson(MovieInfoModel instance) =>
@@ -24,4 +27,7 @@ Map<String, dynamic> _$MovieInfoModelToJson(MovieInfoModel instance) =>
       'poster_url': instance.posterUrl,
       'thumb_url': instance.thumbUrl,
       'year': instance.year,
+      'time': instance.time,
+      'quality': instance.quality,
+      'lang': instance.lang,
     };

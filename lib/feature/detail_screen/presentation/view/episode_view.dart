@@ -1,4 +1,3 @@
-import 'package:film_time/feature/detail_screen/detail_screen.dart';
 import 'package:film_time/feature/detail_screen/presentation/bloc/detail_bloc/detail_bloc.dart';
 import 'package:film_time/feature/detail_screen/presentation/bloc/detail_bloc/detail_state.dart';
 import 'package:film_time/feature/detail_screen/presentation/widget/episode_shimmer_widget.dart';
@@ -13,13 +12,11 @@ class EpisodeView extends StatelessWidget {
     required this.size,
     required this.theme,
     required this.slug,
-    required this.onEpisodeSelected,
   });
 
   final Size size;
   final ThemeData theme;
   final String slug;
-  final Function(ServerDataEntity) onEpisodeSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,7 @@ class EpisodeView extends StatelessWidget {
                 final ep = state.movieDetail.episodes![i];
                 return Container(
                   width: size.width,
-                  padding: const EdgeInsets.all(5),
+                  // padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.surfaceContainerHighest,
                     border: Border.all(color: Colors.black12, width: 1.2),
@@ -61,37 +58,41 @@ class EpisodeView extends StatelessWidget {
                       Visibility(
                         visible: _showMore,
                         child: SizedBox(
-                          child: Wrap(
-                            spacing: 5.0, // Khoảng cách ngang giữa các ô
-                            runSpacing: 5.0, // Khoảng cách dọc giữa các ô
-                            children: ep.serverData!
-                                .map(
-                                  (data) => InkWell(
-                                    borderRadius: BorderRadius.circular(8),
-                                    onTap: () {
-                                      onEpisodeSelected(data);
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (_) =>
-                                      //         VideoPlayerWidget(data: data),
-                                      //   ),
-                                      // );
-                                    },
-                                    child: Card(
-                                      child: SizedBox(
-                                        width: (size.width - 40) /
-                                            5, // Chia đều cho 5 cột
-                                        height: (size.width - 40) /
-                                            10, // Aspect ratio là 1:1
-                                        child: Center(
-                                          child: Text(data.name.toString()),
+                          height: MediaQuery.sizeOf(context).height * 0.25,
+                          child: SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: Wrap(
+                              spacing: 5.0, // Khoảng cách ngang giữa các ô
+                              runSpacing: 5.0, // Khoảng cách dọc giữa các ô
+                              children: ep.serverData!
+                                  .map(
+                                    (data) => InkWell(
+                                      borderRadius: BorderRadius.circular(8),
+                                      onTap: () {
+                                        // onEpisodeSelected(data);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                VideoPlayerWidget(data: data),
+                                          ),
+                                        );
+                                      },
+                                      child: Card(
+                                        child: SizedBox(
+                                          width: (size.width - 40) /
+                                              5, // Chia đều cho 5 cột
+                                          height: (size.width - 40) /
+                                              10, // Aspect ratio là 1:1
+                                          child: Center(
+                                            child: Text(data.name.toString()),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                )
-                                .toList(),
+                                  )
+                                  .toList(),
+                            ),
                           ),
                         ),
                       ),

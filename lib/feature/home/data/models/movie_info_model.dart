@@ -14,13 +14,20 @@ class MovieInfoModel {
   final String? thumbUrl;
   final int? year;
 
+  final String? time;
+  final String? quality;
+  final String? lang;
+
   MovieInfoModel({
     required this.name,
     required this.slug,
     required this.originName,
     required this.posterUrl,
     required this.thumbUrl,
-    this.year,
+    required this.year,
+    required this.time,
+    required this.quality,
+    required this.lang,
   });
 
   factory MovieInfoModel.fromJson(Map<String, dynamic> json) =>
@@ -39,6 +46,9 @@ class MovieInfoModel {
       posterUrl: posterUrl,
       thumbUrl: thumbUrl,
       year: year,
+      time: time,
+      quality: quality,
+      lang: lang,
     );
   }
 }

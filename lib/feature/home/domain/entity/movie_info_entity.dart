@@ -6,6 +6,10 @@ class MovieInfoEntity {
   final String? thumbUrl;
   final int? year;
 
+  final String? time;
+  final String? quality;
+  final String? lang;
+
   MovieInfoEntity({
     required this.name,
     required this.slug,
@@ -13,6 +17,9 @@ class MovieInfoEntity {
     required this.posterUrl,
     required this.thumbUrl,
     required this.year,
+    required this.time,
+    required this.quality,
+    required this.lang,
   });
 }
 

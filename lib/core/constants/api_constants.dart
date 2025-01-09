@@ -9,13 +9,15 @@ class ApiConstants {
   static const String categoryMovie = '/v1/api/danh-sach';
   // for phimapi detailMovie
   static const String detailMovie = '/phim';
+  // for search
+  static const String searchMovie = '/v1/api/tim-kiem';
 
   // not use in phimapi
 
   static const String movieByType = '/films/the-loai';
   static const String movieByNation = '/films/quoc-gia';
   static const String movieByTime = '/films/nam-phat-hanh';
-  static const String searchMovie = '/films/search';
+  // static const String searchMovie = '/films/search';
 
   // kkphim
   static const String phimApi = 'https://phimapi.com';

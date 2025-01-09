@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:film_time/feature/home/domain/entity/movie_info_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:soft_edge_blur/soft_edge_blur.dart';
@@ -38,11 +39,11 @@ class LayOutCardWidget extends StatelessWidget {
             child: OverflowBox(
               minWidth: width * 6 / 8,
               maxWidth: width * 8 / 8,
-              child: Image(
+              child: CachedNetworkImage(
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.image_not_supported_outlined, size: 50),
                 fit: BoxFit.fitWidth,
-                image: NetworkImage(
-                  movie.thumbUrl.toString(),
-                ),
+                imageUrl: movie.thumbUrl.toString(),
               ),
             ),
           ),

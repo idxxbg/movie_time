@@ -11,7 +11,7 @@ class EpisodeShimmerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: size.width,
-      padding: const EdgeInsets.all(5),
+      // margin: const EdgeInsets.only(),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
         border: Border.all(color: Colors.black12, width: 1.2),

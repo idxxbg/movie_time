@@ -6,6 +6,7 @@ import 'package:film_time/feature/detail_screen/domain/domain.dart';
 import 'package:film_time/feature/detail_screen/presentation/bloc/detail_bloc/detail_bloc.dart';
 
 import 'package:film_time/feature/home/presentation/bloc/new_movie_cubit/new_movie_cubit.dart';
+import 'package:film_time/feature/search_movie/search_movie.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../feature/home/data/data.dart';
@@ -32,11 +33,15 @@ void getItsetup() {
 
   sl.registerLazySingleton<DetailMovieApi>(() => DetailMovieApi(sl()));
 
+  sl.registerLazySingleton<SearchApi>(() => SearchApi(sl()));
+
   // 4. Đăng ký ListMovieRepositoryImpl
   sl.registerLazySingleton<ListMovieRepository>(
       () => ListMovieReposiotyImpl(sl())); // Repository triển khai interface
 
   sl.registerLazySingleton<MovieDetailRepo>(() => MovieDetailRepoImpl(sl()));
+
+  sl.registerLazySingleton<SearchMovieRepo>(() => SearchMovieImpl(sl()));
 
   // 5. Đăng ký Usecase
   sl.registerLazySingleton<GetListNewMovieUseCase>(
@@ -46,6 +51,8 @@ void getItsetup() {
       () => GetListMovieByCategoryUseCase(sl()));
 
   sl.registerLazySingleton<GetMovieDetailUc>(() => GetMovieDetailUc(sl()));
+
+  sl.registerLazySingleton<SearchMovieUseCase>(() => SearchMovieUseCase(sl()));
 
   // 6. Đăng ký HomeBloc
 
@@ -57,8 +64,9 @@ void getItsetup() {
 
   sl.registerFactory<DetailBloc>(() => DetailBloc(getMovieDetailUc: sl()));
 
-  sl.registerFactory<HomeBloc>(() => HomeBloc(
-        getListNewMovieUseCase: sl(),
-        getListMovieByCategoryUseCase: sl(),
-      ));
+  sl.registerFactory<SearchBloc>(() => SearchBloc(sl()));
+  // sl.registerFactory<HomeBloc>(() => HomeBloc(
+  //       getListNewMovieUseCase: sl(),
+  //       getListMovieByCategoryUseCase: sl(),
+  //     ));
 }

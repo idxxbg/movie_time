@@ -17,6 +17,11 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       lang: json['lang'] as String?,
       quality: json['quality'] as String?,
       content: json['content'] as String?,
+      actor:
+          (json['actor'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      director: (json['director'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
@@ -29,6 +34,8 @@ Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
       'episode_total': instance.episodeTotal,
       'lang': instance.lang,
       'quality': instance.quality,
+      'actor': instance.actor,
+      'director': instance.director,
     };
 
 Tmdb _$TmdbFromJson(Map<String, dynamic> json) => Tmdb(

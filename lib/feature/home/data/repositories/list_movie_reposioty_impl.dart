@@ -11,7 +11,7 @@ class ListMovieReposiotyImpl implements ListMovieRepository {
     final response = await listMovieApi.fetchNewMovie(page);
     if (response.data != null) {
       final model = ListMovieModel.fromJson(response.data);
-      return model.toEnity(model);
+      return model.toEnity();
     }
     return null;
   }
