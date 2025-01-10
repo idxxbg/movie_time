@@ -22,9 +22,12 @@ class SearchScreen extends StatelessWidget {
           child: Column(
             children: [
               SearchBar(
+                hintText: 'Nhập tên phim',
                 controller: controller,
                 onChanged: (value) {
-                  context.read<SearchBloc>().getListSearchMovie(value, 10);
+                  if (value.isNotEmpty) {
+                    context.read<SearchBloc>().getListSearchMovie(value, 10);
+                  }
                 },
               ),
               BlocBuilder<SearchBloc, SearchState>(
@@ -37,6 +40,8 @@ class SearchScreen extends StatelessWidget {
                     final list = state.listMovie;
                     return Expanded(
                       child: ListView.builder(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         padding: const EdgeInsets.only(top: 16),
                         itemCount: list.items.length,
                         itemBuilder: (context, i) {
