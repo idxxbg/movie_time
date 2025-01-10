@@ -20,7 +20,7 @@ Future<ListMovieModel?> fetchNewMovie(int page) async {
         return listMovie;
       } else {
         debugPrint("error: ${response.statusCode}");
-        debugPrint("error: ${response.data}");
+        // debugPrint("error: ${response.data}");
         throw Exception('fail to get data!');
       }
     } catch (e) {

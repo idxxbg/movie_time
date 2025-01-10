@@ -23,3 +23,4 @@ const String kM3u8 = 'm3u8';
 const String kServername = 'server_name';
 const String kItems = 'items';
 const String kMovie = 'movie';
+const String kimageUrl = 'https://phimimg.com/';

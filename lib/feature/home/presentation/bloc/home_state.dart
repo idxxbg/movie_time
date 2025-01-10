@@ -1,4 +1,4 @@
-import 'package:film_time/core/data/models/list_movie_model.dart';
+import 'package:film_time/feature/home/domain/entity/list_movie_entity.dart';
 
 abstract class HomeState {}
 
@@ -7,8 +7,10 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final ListMovieModel list;
-  HomeLoaded(this.list);
+  final ListMovieEntity listMovie;
+  HomeLoaded(
+    this.listMovie,
+  );
 }
 
 class HomeError extends HomeState {

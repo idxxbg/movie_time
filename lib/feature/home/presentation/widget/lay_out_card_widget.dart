@@ -1,9 +1,11 @@
-import 'package:film_time/core/data/models/movie_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:film_time/feature/home/domain/entity/movie_info_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:soft_edge_blur/soft_edge_blur.dart';
 
 class LayOutCardWidget extends StatelessWidget {
   const LayOutCardWidget({super.key, required this.movie});
-  final MovieModel movie;
+  final MovieInfoEntity movie;
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +16,36 @@ class LayOutCardWidget extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.bottomStart,
       children: [
-        ClipRect(
-          child: OverflowBox(
-            minWidth: width * 6 / 8,
-            maxWidth: width * 8 / 8,
-            child: Image(
-                fit: BoxFit.cover,
-                image: NetworkImage(movie.posterUrl.toString())),
+        SoftEdgeBlur(
+          edges: [
+            EdgeBlur(
+              tintColor: Colors.black12,
+              type: EdgeType.bottomEdge,
+              size: 110,
+              sigma: 40,
+              controlPoints: [
+                ControlPoint(
+                  position: 0.2,
+                  type: ControlPointType.visible,
+                ),
+                ControlPoint(
+                  position: 1,
+                  type: ControlPointType.transparent,
+                )
+              ],
+            )
+          ],
+          child: ClipRect(
+            child: OverflowBox(
+              minWidth: width * 6 / 8,
+              maxWidth: width * 8 / 8,
+              child: CachedNetworkImage(
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.image_not_supported_outlined, size: 50),
+                fit: BoxFit.fitWidth,
+                imageUrl: movie.thumbUrl.toString(),
+              ),
+            ),
           ),
         ),
         Padding(
@@ -31,17 +56,14 @@ class LayOutCardWidget extends StatelessWidget {
               softWrap: false,
               overflow: TextOverflow.fade,
               movie.name.toString(),
-              style:
-                  textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary),
+              style: textTheme.titleMedium?.copyWith(color: Colors.white70),
             ),
             subtitle: Text(
               selectionColor: colorScheme.secondary,
               softWrap: false,
               overflow: TextOverflow.fade,
-              '${movie.time} - ${movie.currentEpisode} \n ${movie.language} '
-                  .toString(),
-              style:
-                  textTheme.bodySmall?.copyWith(color: colorScheme.onPrimary),
+              '${movie.year}'.toString(),
+              style: textTheme.bodySmall?.copyWith(color: Colors.white70),
             ),
           ),
         )
