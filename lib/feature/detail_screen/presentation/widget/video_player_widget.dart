@@ -1,5 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:film_time/feature/detail_screen/detail_screen.dart';
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -13,7 +14,8 @@ class VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late VideoPlayerController _videoPlayer;
-  late ChewieController _chewie;
+  // late ChewieController _chewie;
+  late FlickManager flickManager;
 
   @override
   void initState() {
@@ -21,19 +23,25 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     _videoPlayer = VideoPlayerController.networkUrl(
         Uri.parse(widget.data!.linkM3u8.toString()));
 
-    _chewie = ChewieController(
-      videoPlayerController: _videoPlayer,
-      autoPlay: true,
-      aspectRatio: 16 / 9,
-      // cupertinoProgressColors: ChewieProgressColors(backsgroundColor: )
-    );
+    // _chewie = ChewieController(
+    //   videoPlayerController: _videoPlayer,
+    //   autoPlay: true,
+    //   aspectRatio: 16 / 9,
+    //   // cupertinoProgressColors: ChewieProgressColors(backsgroundColor: )
+    // );
+
+    flickManager = FlickManager(
+        autoPlay: true,
+        autoInitialize: true,
+        videoPlayerController: _videoPlayer);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _videoPlayer.dispose();
-    _chewie.dispose();
+    flickManager.dispose();
+    // _videoPlayer.dispose();
+    // _chewie.dispose();
   }
 
   @override
@@ -46,9 +54,26 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
               data: ThemeData(
                 platform: TargetPlatform.iOS,
               ),
-              child:
-                  //  Chewie(controller: _chewie),
-                  Chewie(controller: _chewie)),
+              child: FlickVideoPlayer(
+                wakelockEnabled: true,
+                flickManager: flickManager,
+                flickVideoWithControls: FlickVideoWithControls(
+                  aspectRatioWhenLoading: 16 / 9,
+                  videoFit: BoxFit.fill,
+                  controls: FlickPortraitControls(
+                    iconSize: 40,
+                    progressBarSettings: FlickProgressBarSettings(
+                      playedColor: Colors.blue,
+                    ),
+                  ),
+                  playerLoadingFallback: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              )
+              //  Chewie(controller: _chewie),
+              // Chewie(controller: _chewie)
+              ),
         ),
       ),
     );

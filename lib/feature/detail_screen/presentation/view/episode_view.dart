@@ -27,7 +27,9 @@ class EpisodeView extends StatelessWidget {
         builder: (context, state) {
           if (state is DetailLoaded) {
             return ListView.separated(
-              separatorBuilder: (context, i) => const Gap(10),
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(0),
+              separatorBuilder: (context, i) => const Gap(16),
               shrinkWrap: true,
               itemCount: state.movieDetail.episodes!.length,
               itemBuilder: (context, int i) {
@@ -57,8 +59,9 @@ class EpisodeView extends StatelessWidget {
                       ),
                       Visibility(
                         visible: _showMore,
-                        child: SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.25,
+                        child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(maxHeight: size.height * 0.25),
                           child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
                             child: Wrap(

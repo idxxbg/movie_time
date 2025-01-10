@@ -47,7 +47,6 @@ class MovieDetailScreen extends StatelessWidget {
                         ),
                         // const Gap(20),
                         // if (_selectedEpisode != null)
-                        //   VideoPlayerWidget(data: _selectedEpisode),
                         const Gap(16),
 
                         // episode choice
