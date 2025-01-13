@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:film_time/core/common/style/style.dart';
 import 'package:film_time/feature/home/domain/entity/movie_info_entity.dart';
+import 'package:film_time/util/routes/app_routes_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
 import 'package:soft_edge_blur/soft_edge_blur.dart';
 

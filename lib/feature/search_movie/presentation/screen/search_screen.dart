@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:film_time/core/common/style/style.dart';
 import 'package:film_time/core/common/widget/error_screen.dart';
-import 'package:film_time/feature/detail_screen/presentation/screens/movie_detail_screen.dart';
 import 'package:film_time/feature/home/home.dart';
 import 'package:film_time/feature/search_movie/presentation/presentation.dart';
+import 'package:film_time/util/routes/app_routes_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -16,13 +18,24 @@ class SearchScreen extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
     final TextEditingController controller = TextEditingController();
     return Scaffold(
-        appBar: AppBar(),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: const SizedBox.shrink(),
+          centerTitle: true,
+          title: Text(
+            'Seach movie',
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 28,
+                fontWeight: FontWeight.w500),
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               SearchBar(
-                hintText: 'Nhập tên phim',
+                hintText: 'VD: Batman...',
                 controller: controller,
                 onChanged: (value) {
                   if (value.isNotEmpty) {
@@ -59,7 +72,7 @@ class SearchScreen extends StatelessWidget {
                     return const ErrorScreen(error: 'Mời nhập tên phim');
                   }
                 },
-              )
+              ),
             ],
           ),
         ));
@@ -82,8 +95,7 @@ class CardInfoMovieWidget extends StatelessWidget {
       width: size.width,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () => Navigator.push(context,
-            MaterialPageRoute(builder: (_) => MovieDetailScreen(movie: movie))),
+        onTap: () => context.pushNamed(AppRoutesConstants.detail, extra: movie),
         child: Card.filled(
           color: Colors.black12,
           shape: RoundedRectangleBorder(

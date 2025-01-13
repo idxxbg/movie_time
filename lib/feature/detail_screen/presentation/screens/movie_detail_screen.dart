@@ -10,6 +10,8 @@ import 'package:gap/gap.dart';
 
 class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({super.key, required this.movie});
+
+  static String routeName = '/movie_detail';
   final MovieInfoEntity movie;
 
   @override
