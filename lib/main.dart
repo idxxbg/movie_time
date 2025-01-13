@@ -8,5 +8,7 @@ void main() {
   runApp(const MyApp());
   getItsetup();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent);
+  const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Color(0x00000000));
 }

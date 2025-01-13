@@ -35,18 +35,18 @@ class LayOutCardWidget extends StatelessWidget {
               ],
             )
           ],
-          child: ClipRect(
-            child: OverflowBox(
+          child: OverflowBox(
               minWidth: width * 6 / 8,
               maxWidth: width * 8 / 8,
-              child: CachedNetworkImage(
-                errorWidget: (context, url, error) =>
-                    const Icon(Icons.image_not_supported_outlined, size: 50),
-                fit: BoxFit.fitWidth,
-                imageUrl: movie.thumbUrl.toString(),
+              child: CachedNetworkImage(imageUrl: movie.thumbUrl.toString())
+
+              //  CachedNetworkImage(
+              //   errorWidget: (context, url, error) =>
+              //       const Icon(Icons.image_not_supported_outlined, size: 50),
+              //   fit: BoxFit.fitWidth,
+              //   imageUrl: movie.thumbUrl.toString(),
+              // ),
               ),
-            ),
-          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
